@@ -52,6 +52,10 @@ public:
         return 0;
     }
 
+    char *ptrArray[3] = {
+	    A, B, C
+    };
+
     bool winnDetection()
     {
         //detects if one player has won
@@ -63,18 +67,9 @@ public:
         if(turn == 'X'){turn2 = 'O';}
         for(int i = 0; i < 4; i++)
         {
-            if(A[i] == turn2)
-            {
-                winnindicator1 ++;
-            }
-            if(B[i] == turn2)
-            {
-                winnindicator2 ++;
-            }
-            if(C[i] == turn2)
-            {
-                winnindicator3 ++;
-            }
+	    for (int j = 0; j < 3; j++)
+		    if (ptrArray[j][i] == turn2)
+			winnindicator1++;
         }
         if(winnindicator1 == 3 || winnindicator2 == 3 || winnindicator3 == 3)
         {
