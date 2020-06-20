@@ -15,6 +15,8 @@ private:
     int x;
     char y;
 
+    char inX;
+
     char *p_Array[3] = { A, B, C};
 
 
@@ -24,21 +26,54 @@ public:
     int move()
     {
         cout << turn << "'s turn (X,Y): ";
-        cin >> x >> y;
-        switch (y)
+        cin >> inX >> y;
+
+        if((int(inX) >= 49 && int(inX <= 51)) && (int(y) == 65 || int(y) == 66 || int(y) == 67))
+        {
+            x = int(inX) - 48;
+            switch (y)
         {
             case 'A':
-            A[x - 1] = turn;
+                if(int(A[x - 1]) == 32)
+                {
+                    A[x - 1] = turn;
+                }
+                else
+                {
+                    cout << "ungueltige Eingabe!" << endl;
+                    return 1;
+                }
+                
                 break;
             case 'B':
-                B[x - 1] = turn;
+                if(int(B[x - 1]) == 32)
+                    {
+                        B[x - 1] = turn;
+                    }    
+                else
+                {
+                    cout << "ungueltige Eingabe!" << endl;
+                    return 1;
+                }            
                 break;
             case 'C':
-                C[x - 1] = turn;
-            
+                if(int(C[x - 1]) == 32)
+                {
+                    C[x - 1] = turn;
+                }
+                else
+                {
+                    cout << "ungueltige Eingabe!" << endl;
+                    return 1;
+                }          
             default:
                 break;
-        cout << A[0] << endl;
+        }
+        }
+        else
+        {
+            cout << "fehlerhafte Eingabe!" <<endl;
+            return 2;
         }
 
         if(turn == 'X')
@@ -117,8 +152,12 @@ int main()
     ticTacToe.drawBoard();
     while(ticTacToe.winnDetection() == false)
     {
-        ticTacToe.move();
-        ticTacToe.drawBoard();
+        int x = 0;
+        x = ticTacToe.move();
+        if(x == 0)
+        {
+            ticTacToe.drawBoard();
+        }
     }
     return 0;
 }
