@@ -66,7 +66,7 @@ public:
         int winnindicator6 = 0;
         int winnindicator7 = 0;
         int winnindicator8 = 0;
-        
+
         int *winnArayhori[3] = {&winnindicator1, &winnindicator2, &winnindicator3};
         int *winnArayvert[3] = {&winnindicator4, &winnindicator5, &winnindicator6};
         char turn2 = 'X';
@@ -80,6 +80,16 @@ public:
                 *winnArayvert[i] = *winnArayvert[i] + 1;
             }
         }
+
+        for(int i = 0; i  <= 2;)
+        {
+            if (A[0 + i] == turn2 && B[1] == turn2 && C[2 - i] == turn2)
+            {
+                return true;
+            }
+            i = i + 2;
+        }
+
         if(winnindicator1 == 3 || winnindicator2 == 3 || winnindicator3 == 3 || winnindicator4 == 3 || winnindicator5 == 3 || winnindicator6 == 3)
         {
             return true;
