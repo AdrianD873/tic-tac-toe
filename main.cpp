@@ -15,6 +15,9 @@ private:
     int x;
     char y;
 
+    char *p_Array[3] = { A, B, C};
+
+
 
 public:
 
@@ -26,7 +29,6 @@ public:
         {
             case 'A':
             A[x - 1] = turn;
-            cout << "hi" <<endl;
                 break;
             case 'B':
                 B[x - 1] = turn;
@@ -52,10 +54,6 @@ public:
         return 0;
     }
 
-    char *ptrArray[3] = {
-	    A, B, C
-    };
-
     bool winnDetection()
     {
         //detects if one player has won
@@ -63,15 +61,26 @@ public:
         int winnindicator1 = 0;
         int winnindicator2 = 0;
         int winnindicator3 = 0;
+        int winnindicator4 = 0;
+        int winnindicator5 = 0;
+        int winnindicator6 = 0;
+        int winnindicator7 = 0;
+        int winnindicator8 = 0;
+        
+        int *winnArayhori[3] = {&winnindicator1, &winnindicator2, &winnindicator3};
+        int *winnArayvert[3] = {&winnindicator4, &winnindicator5, &winnindicator6};
         char turn2 = 'X';
         if(turn == 'X'){turn2 = 'O';}
         for(int i = 0; i < 4; i++)
         {
 	    for (int j = 0; j < 3; j++)
-		    if (ptrArray[j][i] == turn2)
-			winnindicator1++;
+		    if (p_Array[j][i] == turn2)
+            {
+                *winnArayhori[j] = *winnArayhori[j] + 1;
+                *winnArayvert[i] = *winnArayvert[i] + 1;
+            }
         }
-        if(winnindicator1 == 3 || winnindicator2 == 3 || winnindicator3 == 3)
+        if(winnindicator1 == 3 || winnindicator2 == 3 || winnindicator3 == 3 || winnindicator4 == 3 || winnindicator5 == 3 || winnindicator6 == 3)
         {
             return true;
         }
